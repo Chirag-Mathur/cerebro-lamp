@@ -1,5 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:math';
 
 void main() {
   runApp(Landing());
@@ -22,6 +28,52 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _visibility = false;
+  late Timer timer;
+  Future<void> fetchAndSyncValue() async {
+    const url = 'https://lamp-lighten-default-rtdb.firebaseio.com/visible.json';
+
+    var encoded = Uri.parse(url);
+    try {
+      final response = await http.get(encoded);
+      print(json.decode(response.body));
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      print(extractedData);
+
+      setState(() {
+        _visibility = extractedData.values.last.values.elementAt(0);
+        print('visiblity = ${_visibility}');
+      });
+    } catch (onError) {
+      //throw onError;
+      print(onError.toString());
+    }
+  }
+
+  Future<void> updateValue() async {
+    const url = 'https://lamp-lighten-default-rtdb.firebaseio.com/visible.json';
+
+    var encoded = Uri.parse(url);
+    try {
+      final response = await http.post(
+        encoded,
+        body: json.encode(
+          {
+            'visible': _visibility,
+          },
+        ),
+      );
+      print(json.decode(response.body));
+    } catch (onError) {
+      print(onError.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    timer =
+        Timer.periodic(Duration(seconds: 1), (Timer t) => fetchAndSyncValue());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +167,7 @@ class _MyAppState extends State<MyApp> {
                         setState(() {
                           _visibility = true;
                         });
+                        updateValue();
                         print(cWidth);
                         print(cheight);
                       },
@@ -141,6 +194,18 @@ class _MyAppState extends State<MyApp> {
                           child: Text('Thank You'),
                         ),
                       ),
+              ),
+            ),
+            Positioned(
+              bottom: 0.0,
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    _visibility = false;
+                  });
+                  updateValue();
+                },
+                child: Text('Reset'),
               ),
             )
           ],
