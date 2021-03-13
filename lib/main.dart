@@ -55,8 +55,9 @@ class _MyAppState extends State<MyApp> {
             ),
             Positioned(
               bottom: 190.0 * mheight,
+              left: 710.0 * mwidth,
               child: Container(
-                height: 350,
+                height: 350 * mheight,
                 child: Image.asset(
                   'assets/images/3.png',
                 ),
@@ -64,12 +65,12 @@ class _MyAppState extends State<MyApp> {
             ),
             Positioned(
               bottom: 423.0 * mheight,
-              left: 785.0 * mwidth,
+              left: (715.0 * mwidth) + 67,
               child: AnimatedOpacity(
                 opacity: _visibility ? 1.0 : 0.0,
                 duration: Duration(milliseconds: 500),
                 child: Container(
-                  height: 70,
+                  height: 70 * mheight,
                   child: Image.asset(
                     'assets/images/4.gif',
                   ),
@@ -78,12 +79,12 @@ class _MyAppState extends State<MyApp> {
             ),
             Positioned(
               bottom: 423.0 * mheight,
-              left: 750.0 * mwidth,
+              left: (715.0 * mwidth) + 32,
               child: AnimatedOpacity(
                 opacity: _visibility ? 1.0 : 0.0,
                 duration: Duration(milliseconds: 500),
                 child: Container(
-                  height: 70,
+                  height: 70 * mheight,
                   child: Image.asset(
                     'assets/images/4.gif',
                   ),
@@ -97,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                 opacity: _visibility ? 1.0 : 0.0,
                 duration: Duration(milliseconds: 500),
                 child: Container(
-                  height: 70,
+                  height: 70 * mheight,
                   child: Image.asset(
                     'assets/images/4.gif',
                   ),
@@ -126,15 +127,19 @@ class _MyAppState extends State<MyApp> {
                         showTwoGlows: true,
                         repeatPauseDuration: Duration(milliseconds: 100),
                         child: CircleAvatar(
-                          radius: 40,
+                          radius: 40 * mheight,
                           backgroundColor: Colors.red,
-                          child: Text('Lighten'),
+                          child: FittedBox(
+                            child: Text('Lighten'),
+                          ),
                         ),
                       )
                     : CircleAvatar(
-                        radius: 40,
+                        radius: 40 * mheight,
                         backgroundColor: Colors.red,
-                        child: Text('Thank You'),
+                        child: FittedBox(
+                          child: Text('Thank You'),
+                        ),
                       ),
               ),
             )
