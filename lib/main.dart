@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             Container(
               child: Image.asset(
-                'stagedim.png',
+                'assets/images/stagedim.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
               duration: Duration(milliseconds: 500),
               child: Container(
                 child: Image.asset(
-                  'stagelit.png',
+                  'assets/images/stagelit.png',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
               child: Container(
                 height: 350,
                 child: Image.asset(
-                  '3.png',
+                  'assets/images/3.png',
                 ),
               ),
             ),
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 child: Container(
                   height: 70,
                   child: Image.asset(
-                    '4.gif',
+                    'assets/images/4.gif',
                   ),
                 ),
               ),
@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 child: Container(
                   height: 70,
                   child: Image.asset(
-                    '4.gif',
+                    'assets/images/4.gif',
                   ),
                 ),
               ),
@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
                 child: Container(
                   height: 70,
                   child: Image.asset(
-                    '4.gif',
+                    'assets/images/4.gif',
                   ),
                 ),
               ),
