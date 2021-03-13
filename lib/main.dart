@@ -27,7 +27,7 @@ class Landing extends StatelessWidget {
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
-  static const routeName = '/Admin';
+  static const routeName = '/admin';
 }
 
 class _MyAppState extends State<MyApp> {
